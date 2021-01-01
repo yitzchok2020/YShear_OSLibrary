@@ -1,0 +1,28 @@
+import os
+
+def main():
+  path = os.getcwd()
+  #print(path)
+  directory = input("What directory would you like to save your file to?: ")
+  fname = input("What is name of the file?: ")
+  #print(os.path.join(path,directory))
+  if os.path.exists(os.path.join(path,directory)):
+    print("Directory already exists adding file")
+  else:
+    os.makedirs(directory)
+    print("Directory made sucessfully")
+
+  name = input("Name?: ")
+  address = input("Address?: ")
+  phone = input("Phone number?: ")
+  
+  fhandle = open(os.path.join(directory, fname),"w")
+  fhandle.write(", ".join([name,address,phone]))
+  fhandle.close()
+
+  print("read out the file")
+  fhandle = open(os.path.join(directory, fname),"r")
+  for line in fhandle:
+    print(line)
+
+main()
